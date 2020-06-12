@@ -1,0 +1,17 @@
+.title{
+    display: flex;
+    font-size: 18px;
+}
+
+.categories{
+    flex-direction: column;
+    margin: 10px;
+    width:200px;
+}
+
+button{
+    cursor: pointer;
+    font-size: 15px;
+    margin-left: 5px;
+    background-color: #8cb5ffa8;
+}

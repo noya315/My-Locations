@@ -1,0 +1,10 @@
+<mat-card class="submit">
+    <mat-form-field>
+        <mat-label>Category name</mat-label>
+        <input matInput [(ngModel)]="data.name">
+    </mat-form-field>
+    <mat-dialog-actions>
+        <button mat-button color="primary" [mat-dialog-close]="data.name">{{data.submitTask}}</button>
+        <button mat-button color="primary" (click)="close()">Cancel</button>
+    </mat-dialog-actions>
+</mat-card>
