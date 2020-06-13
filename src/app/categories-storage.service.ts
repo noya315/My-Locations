@@ -8,14 +8,12 @@ const CATEGORIES_KEY = 'CATEGORIES';
 })
 export class CategoriesStorageService {
   constructor() {
-    if(!this.getCategories()){
+    if(!this.getCategories())
       this.updateCategories([]);
-    }
   }
 
   getCategories = () => localStorage.getItem(CATEGORIES_KEY);
 
-  updateCategories = (categories: Category[]) => {
+  updateCategories = (categories: Category[]) => 
     localStorage.setItem(CATEGORIES_KEY, JSON.stringify(categories));
-  }
 }

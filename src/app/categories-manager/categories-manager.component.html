@@ -1,13 +1,13 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
       <span class="title">{{title}}:</span>
-      <button mat-button *ngIf="!currentCategory.name" (click)="addCategoryProccess()">
+      <button mat-button *ngIf="!currentCategory.name" (click)="addCategoryProcess()">
         <mat-icon>add</mat-icon>
       </button>
       <button mat-button *ngIf="currentCategory.name" (click)="removeCategory()">
         <mat-icon>delete</mat-icon>
       </button>
-      <button mat-button *ngIf="currentCategory.name" (click)="editCategoryProccess()">
+      <button mat-button *ngIf="currentCategory.name" (click)="editCategoryProcess()">
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-button *ngIf="currentCategory.name" (click)="viewDetails()">
