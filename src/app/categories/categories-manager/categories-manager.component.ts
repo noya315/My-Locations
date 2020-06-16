@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { SubmitCategoryDialogComponent }
 from '../submit-category-dialog/submit-category-dialog.component';
@@ -6,6 +7,7 @@ import { ViewCategoryDetailsDialogComponent }
 from '../view-category-details-dialog/view-category-details-dialog.component';
 import { CategoriesStorageService } from '../categories-storage.service';
 import { Category } from '../category';
+import { ThrowStmt } from '@angular/compiler';
 
 const CATEGORIES_NAME = 'Categories';
 
@@ -16,14 +18,14 @@ const CATEGORIES_NAME = 'Categories';
 })
 export class CategoriesManagerComponent {
   @Input() title:string;
-  categories : Category[];
+  categories$ : Observable<Category[]>;
   currentCategory: Category;
 
   constructor(public dialog: MatDialog,
-    private categoryStorageService: CategoriesStorageService) {
+    private categoriesStorageService: CategoriesStorageService) {
     this.title = CATEGORIES_NAME;
     this.currentCategory = new Category();
-    this.categories = JSON.parse(this.categoryStorageService.getCategories());
+    this.categories$ = this.categoriesStorageService.getCategories();
   }
 
   addCategoryProcess = () => this.openDialog('Add Category', this.addCategory);
@@ -45,29 +47,25 @@ export class CategoriesManagerComponent {
 
   addCategory = (categoryName: string) => {
     const category = new Category(categoryName);
-    this.categories.push(category);
-    this.categoryStorageService.updateCategories(this.categories);
+    this.categoriesStorageService.addCategory(category);
   }
 
   removeCategory = () => {
-    const categoryIndex = this.categories.indexOf(this.currentCategory);
-    this.categories.splice(categoryIndex,1);
-    this.categoryStorageService.updateCategories(this.categories);
+    this.categoriesStorageService.removeCategory(this.currentCategory);
     this.resetCategory();
   }
 
   editCategory = (categoryName: string) => {
-    const categoryIndex = this.categories.indexOf(this.currentCategory);
-    this.categories[categoryIndex] = new Category(categoryName);
-    this.currentCategory = this.categories[categoryIndex];
+    const newCategory = new Category(categoryName);
+    this.categoriesStorageService.editCategory(this.currentCategory, newCategory);
+    this.currentCategory = newCategory;
     this.title = categoryName;
-    this.categoryStorageService.updateCategories(this.categories);
   }
 
   viewDetails = () => {
     const categoryName = this.currentCategory.name;
     this.dialog.open(ViewCategoryDetailsDialogComponent, {
-      width:'250px',
+      minWidth:'250px',
       panelClass: 'no-padding-dialog',
       data: {name: categoryName}
     });

@@ -5,3 +5,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .no-padding-dialog .mat-dialog-container{
     padding: 0;
 }
+
+.entity-list{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width:20%;
+    min-width:200px;
+}
+
+.title{
+    display: flex;
+    font-size: 18px;
+}
+
+.button-style{
+    cursor: pointer;
+    font-size: 15px;
+    background-color: #8cb5ffa8;
+}
