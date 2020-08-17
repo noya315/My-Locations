@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MapsService } from '../maps.service';
-import { Location } from '../locations/location';
-import { LocationsService } from '../locations/locations.service';
+import { Component } from '@angular/core';
+
+import { Location } from 'src/app/locations/location';
+import { MapsService } from 'src/app/services/maps.service';
+import { LocationsService } from 'src/app/services/locations.service';
 
 const LOCATION_ICON_URL = 'http://maps.google.com/mapfiles/ms/icons/';
 

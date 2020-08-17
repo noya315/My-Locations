@@ -1,21 +1,16 @@
-import { Component, TemplateRef, ViewChild, ViewContainerRef, AfterViewInit } from '@angular/core';
-import { Observable, combineLatest, BehaviorSubject, of } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
-import { Location } from '../location';
-import { LocationsService } from '../locations.service';
-import { LocationViewState } from '../location-view-state.enum';
 import { map } from 'rxjs/operators';
-import { ToolbarService } from 'src/app/toolbar.service';
+import { MatDialog } from '@angular/material/dialog';
 import { TemplatePortal } from '@angular/cdk/portal';
+import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
+import { Component, TemplateRef, ViewChild, ViewContainerRef, AfterViewInit } from '@angular/core';
+
+import { Location } from '../location';
 import { Output } from '../locations-output';
+import { SortingType } from '../sorting-type.enum';
+import { LocationViewState } from '../location-view-state.enum';
+import { LocationsService, LOCATIONS_KEY } from 'src/app/services/locations.service';
+import { ToolbarService } from 'src/app/services/toolbar.service';
 import { SubmitLocationDialogComponent } from '../submit-location-dialog/submit-location-dialog.component';
-
-const LOCATION_NAME = 'Locations';
-
-enum SortingType {
-  CreationTime,
-  Alphabetically
-}
 
 @Component({
   selector: 'app-locations-page',
@@ -74,7 +69,7 @@ export class LocationsPageComponent implements AfterViewInit{
   }
 
   updateTitle(selectedLocation: Location): string {
-    return selectedLocation.name || LOCATION_NAME;
+    return selectedLocation.name || LOCATIONS_KEY;
   }
 
   updateActionContext(selectedLocation: Location) {

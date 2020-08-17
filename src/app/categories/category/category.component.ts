@@ -8,6 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class CategoryComponent {
   @Input() name: string;
   @Input() isSelected: boolean;
+
   @Output() categorySelected: EventEmitter<any>;
 
   constructor() {

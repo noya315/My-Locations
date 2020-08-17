@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { LocationData } from '../location-data';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+
+import { LocationData } from 'src/app/models';
 import { Category } from '../../categories/category';
-import { CategoriesService } from 'src/app/categories/categories.service';
+import { CategoriesService } from 'src/app/services/categories.service';
 
 export function ValidateLatitude(control: AbstractControl) {
   if (!(control.value >= -90 && control.value <= 90)) {

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { Category } from './category';
-import { LocalStorageBehaviorSubject } from '../local-storage-behavior-subject';
 import { MatDialog } from '@angular/material/dialog';
-import { ViewCategoryDetailsDialogComponent } from './view-category-details-dialog/view-category-details-dialog.component';
-import { LocationsService } from '../locations/locations.service';
 
-const CATEGORIES_KEY = 'Categories';
+import { Category } from '../categories/category';
+import { LocationsService } from 'src/app/services/locations.service';
+import { LocalStorageBehaviorSubject } from '../local-storage-behavior-subject';
+import { ViewCategoryDetailsDialogComponent } from '../categories/view-category-details-dialog/view-category-details-dialog.component';
+
+export const CATEGORIES_KEY = 'Categories';
 
 @Injectable({
   providedIn: 'root'
@@ -37,21 +38,21 @@ export class CategoriesService {
     this.selectedCategory$.next(new Category());
   }
 
-  public getCategories(): Category[] {
+  getCategories(): Category[] {
     return this.categories$.value;
   }
 
-  public getSelectedCategory(): Category {
+  getSelectedCategory(): Category {
     return this.selectedCategory$.value;
   }
 
-  public addCategory = (category: Category) => {
+  addCategory = (category: Category) => {
     const categories = this.getCategories();
     categories.push(category);
     this.saveCategories(categories);
   }
 
-  public removeCategory = () => {
+  removeCategory = () => {
     let categories = this.getCategories();
     const selectedCategory = this.getSelectedCategory();
     categories = categories.filter((cat) => cat !== selectedCategory);
@@ -59,7 +60,7 @@ export class CategoriesService {
     this.resetCategory();
   }
 
-  public editCategory = (category: Category) => {
+  editCategory = (category: Category) => {
     const categories = this.getCategories();
     const selectedCategory = this.getSelectedCategory();
     const categoryIndex = categories.findIndex((cat) => cat === selectedCategory);
@@ -71,7 +72,7 @@ export class CategoriesService {
     }
   }
 
-  public selectCategory = (category: Category) => {
+  selectCategory = (category: Category) => {
     const selectedCategory = this.getSelectedCategory();
     if (category.name !== selectedCategory.name || (!selectedCategory)) {
       this.selectedCategory$.next(category);
@@ -80,7 +81,7 @@ export class CategoriesService {
     }
   }
 
-  public viewDetails = () => {
+  viewDetails = () => {
     const selectedCategory = this.getSelectedCategory();
     this.dialog.open(ViewCategoryDetailsDialogComponent, {
       minWidth: '250px',

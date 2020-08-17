@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { Location } from './location';
-import { LocalStorageBehaviorSubject } from '../local-storage-behavior-subject';
 import { MatDialog } from '@angular/material/dialog';
-import { ViewLocationDetailsDialogComponent } from './view-location-details-dialog/view-location-details-dialog.component';
-import { LocationViewState } from './location-view-state.enum';
-import { Category } from '../categories/category';
-import { MapsService } from '../maps.service';
 
-const LOCATIONS_KEY = 'Location';
+import { MapsService } from './maps.service';
+import { Location } from '../locations/location';
+import { Category } from '../categories/category';
+import { LocationViewState } from '../locations/location-view-state.enum';
+import { LocalStorageBehaviorSubject } from '../local-storage-behavior-subject';
+import { ViewLocationDetailsDialogComponent } from '../locations/view-location-details-dialog/view-location-details-dialog.component';
+
+export const LOCATIONS_KEY = 'Locations';
 
 @Injectable({
   providedIn: 'root'

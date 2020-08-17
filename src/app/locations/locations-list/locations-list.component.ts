@@ -1,7 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { Location } from '../location';
-import { LocationsService } from '../locations.service';
+import { LocationsService } from 'src/app/services/locations.service';
 
 @Component({
   selector: 'app-locations-list',

@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CategoryData } from '../category-data';
+
+import { CategoryData } from 'src/app/models';
 
 @Component({
   selector: 'app-submit-category-dialog',
@@ -14,5 +15,4 @@ export class SubmitCategoryDialogComponent {
               @Inject(MAT_DIALOG_DATA) public data: CategoryData) { }
 
   close = () => this.dialogRef.close();
-
 }

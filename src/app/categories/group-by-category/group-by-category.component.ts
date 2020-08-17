@@ -1,8 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { Location } from 'src/app/locations/location';
 import { Category } from '../category';
-import { LocationsService } from 'src/app/locations/locations.service';
+import { LocationsService } from 'src/app/services/locations.service';
 
 @Component({
   selector: 'app-group-by-category',
@@ -12,6 +13,7 @@ import { LocationsService } from 'src/app/locations/locations.service';
 export class GroupByCategoryComponent {
   @Input() groupedByCategory: Record<string, Location[]>;
   @Output() locationSelected: EventEmitter<any>;
+
   selectedLocation$: Observable<Category>;
 
   constructor(private locationsService: LocationsService) {

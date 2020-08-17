@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Category } from '../categories/category';
-import { FormControl, AbstractControl, ValidatorFn } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
-import { CategoriesService } from '../categories/categories.service';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormControl, AbstractControl, ValidatorFn } from '@angular/forms';
+
+import { Category } from 'src/app/categories/category';
+import { CategoriesService } from 'src/app/services/categories.service';
 
 function autocompleteObjectValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {

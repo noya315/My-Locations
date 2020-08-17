@@ -5,7 +5,9 @@ import { Subject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MapsService {
+
   private center$: Subject<google.maps.LatLngLiteral>;
+
   constructor() {
     this.center$ = new Subject<google.maps.LatLngLiteral>();
   }

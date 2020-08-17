@@ -3,14 +3,13 @@ import { AfterViewInit, Component, TemplateRef, ViewChild, ViewContainerRef } fr
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ToolbarService } from 'src/app/toolbar.service';
-import { Category } from '../category';
-import { LocationsService } from 'src/app/locations/locations.service';
-import { CategoriesService } from '../categories.service';
-import { ConfirmationDialogComponent } from 'src/app/confirmation-dialog/confirmation-dialog.component';
-import { SubmitCategoryDialogComponent } from '../submit-category-dialog/submit-category-dialog.component';
 
-const CATEGORIES_NAME = 'Categories';
+import { Category } from '../category';
+import { ToolbarService } from 'src/app/services/toolbar.service';
+import { LocationsService } from 'src/app/services/locations.service';
+import { CategoriesService, CATEGORIES_KEY } from 'src/app/services/categories.service';
+import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
+import { SubmitCategoryDialogComponent } from '../submit-category-dialog/submit-category-dialog.component';
 
 @Component({
   selector: 'app-categories-page',
@@ -18,11 +17,12 @@ const CATEGORIES_NAME = 'Categories';
   styleUrls: ['./categories-page.component.scss']
 })
 export class CategoriesPageComponent implements AfterViewInit {
+  @ViewChild('toolbarPortalContent') toolbarPortalContent: TemplateRef<any>;
+
   title$: Observable<string>;
   categories$: Observable<Category[]>;
   isSelectCategory$: Observable<boolean>;
   selectedCategory$: Observable<Category>;
-  @ViewChild('toolbarPortalContent') toolbarPortalContent: TemplateRef<any>;
 
   constructor(public dialog: MatDialog,
               private categoriesService: CategoriesService,
@@ -55,7 +55,7 @@ export class CategoriesPageComponent implements AfterViewInit {
   }
 
   private updateTitle(selectedCategory: Category): string {
-    return selectedCategory.name || CATEGORIES_NAME;
+    return selectedCategory.name || CATEGORIES_KEY;
   }
 
   private openDialog = (submitTask: string, callback: (category) => void) => {
