@@ -1,0 +1,4 @@
+<div *ngFor="let item of groupedByCategory | keyvalue" class="group-by-items">
+    <mat-label>{{item.key}}</mat-label>
+    <app-locations-list [locations]="item.value" (locationSelected)="selectLocation($event.location)"></app-locations-list>
+</div>

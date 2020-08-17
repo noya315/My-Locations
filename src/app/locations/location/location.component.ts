@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-location',
@@ -7,9 +7,16 @@ import { Component, Input } from '@angular/core';
 })
 export class LocationComponent {
   @Input() name: string;
-  @Input() isChoosed: boolean;
-  
-  constructor() { 
-    this.isChoosed = false;
+  @Input() isSelected: boolean;
+
+  @Output() locationSelected: EventEmitter<any>;
+
+  constructor() {
+    this.isSelected = false;
+    this.locationSelected = new EventEmitter<any>();
+  }
+
+  selectLocation(){
+    this.locationSelected.emit();
   }
 }

@@ -1,0 +1,10 @@
+<mat-form-field class="sort-form-field">
+    <mat-select placeholder="Sorting - " [value]="0" (selectionChange)="changeSorting($event.value)">
+        <mat-option [value]="0">
+            Creation time
+        </mat-option>
+        <mat-option [value]="1">
+            Alphabetically
+        </mat-option>
+    </mat-select>
+</mat-form-field>

@@ -9,8 +9,8 @@ import { LocationData } from '../location-data';
 })
 export class ViewLocationDetailsDialogComponent {
 
-  constructor(public dialogRef:MatDialogRef<ViewLocationDetailsDialogComponent>,
-  @Inject(MAT_DIALOG_DATA) public locationData: LocationData) { }
-  
+  constructor(public dialogRef: MatDialogRef<ViewLocationDetailsDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public locationData: LocationData) { }
+
   close = () => this.dialogRef.close();
 }

@@ -8,9 +8,10 @@ import { CategoryData } from '../category-data';
   styleUrls: ['./submit-category-dialog.component.scss']
 })
 export class SubmitCategoryDialogComponent {
-  name:string;
+  name: string;
+
   constructor(public dialogRef: MatDialogRef<SubmitCategoryDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: CategoryData) { }
+              @Inject(MAT_DIALOG_DATA) public data: CategoryData) { }
 
   close = () => this.dialogRef.close();
 

@@ -1,7 +1,6 @@
-.submit{
-    display: flex;
-    flex-direction: column;
-    position: relative;
+@import '../../../styles.scss';
+
+.location{
     align-items: center;
     overflow: hidden;
 }

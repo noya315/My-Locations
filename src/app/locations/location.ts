@@ -1,7 +1,13 @@
-import { Category } from '../categories/category';
-
 export class Location {
-    constructor(public name: string = '', public address:string = '',
-                public coordinates: string = '',
-                public category: Category = new Category()){ }
+    constructor(public name: string = '', public address: string = '',
+                public category: string = '', public position?: google.maps.LatLngLiteral) {
+        if (!position) {
+            navigator.geolocation.getCurrentPosition((currentPosition) => {
+                this.position = {
+                    lat: currentPosition.coords.latitude,
+                    lng: currentPosition.coords.longitude
+                };
+            });
+        }
+    }
 }

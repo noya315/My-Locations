@@ -1,0 +1,4 @@
+<google-map class="map" height="430px" width="700" [zoom]="4" [center]="center$ | async">
+    <map-marker *ngFor="let location of locations$ | async" [position]="location.position"
+        [options]="(selectedLocation$ | async) === location ? options : defaultOptions"></map-marker>
+</google-map>

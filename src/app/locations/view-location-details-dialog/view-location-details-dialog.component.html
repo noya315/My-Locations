@@ -1,7 +1,7 @@
 <mat-card class="view-details location-style">
     <mat-label>Location name: {{locationData.location.name}}</mat-label>
     <mat-label>Location address: {{locationData.location.address}}</mat-label>
-    <mat-label>Location coordinates: {{locationData.location.coordinates}}</mat-label>
+    <mat-label>Location coordinates: {{locationData.location.position.lat}}, {{locationData.location.position.lng}}</mat-label>
     <mat-label>Location category: {{locationData.location.category}}</mat-label>
     <mat-dialog-actions class="actions">
         <button mat-button color="primary" (click)="close()">Close</button>

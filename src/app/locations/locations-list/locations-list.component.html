@@ -1,0 +1,6 @@
+<div class="list">
+    <app-location *ngFor="let location of locations" [name]="location.name"
+        [isSelected]="!selectedLocation$ || location === (selectedLocation$ | async)"
+        (locationSelected)="selectLocation(location)">
+    </app-location>
+</div>

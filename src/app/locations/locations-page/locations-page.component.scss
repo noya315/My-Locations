@@ -1,0 +1,15 @@
+@import "../../../styles.scss";
+
+.sort-form-field {
+    left: 10px;
+}
+
+.filter-form-field {
+    width: 16%;
+    margin-left: 25px;
+}
+
+.actions{
+    display: flex;
+    align-items: baseline;
+}

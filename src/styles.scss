@@ -1,26 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~material-design-icons/iconfont/material-icons.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.no-padding-dialog .mat-dialog-container{
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+button {
+    cursor: pointer;
+    font-size: 15px;
+    margin-left: 5px;
+    background-color: #8cb5ffa8;
+}
+
+.no-padding-dialog mat-dialog-container {
     padding: 0;
 }
 
-.entity-list{
+.confirmation mat-dialog-container {
+    display: flex;
+    position: relative;
+    padding: 0;
+    overflow-x: hidden;
+    min-width: 482px;
+    bottom: 210px;
+    right: 90px;
+    animation-direction: alternate-reverse;
+}
+
+.list {
     display: flex;
     flex-direction: column;
     margin: 10px;
-    width:20%;
-    min-width:200px;
+    width: 20%;
+    min-width: 200px;
+    direction: ltr;
 }
 
-.title{
+.title {
     display: flex;
     font-size: 18px;
 }
 
-.button-style{
-    cursor: pointer;
-    font-size: 15px;
-    background-color: #8cb5ffa8;
+.submit {
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }

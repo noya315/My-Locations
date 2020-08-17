@@ -1,4 +1,4 @@
-<div class="location" [ngClass]="{'choosed': isChoosed == true}">
-    <mat-radio-button color="primary" [checked] ="isChoosed"></mat-radio-button>
+<div class="location" [ngClass]="{'selected': isSelected == true}" (click)="selectLocation()">
+    <mat-radio-button color="primary" [checked]="isSelected"></mat-radio-button>
     <mat-label>{{name}}</mat-label>
 </div>

@@ -10,7 +10,7 @@ import { CategoryData } from '../category-data';
 export class ViewCategoryDetailsDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<ViewCategoryDetailsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public categoryData: CategoryData) { }
+              @Inject(MAT_DIALOG_DATA) public categoryData: CategoryData) { }
 
   close = () => this.dialogRef.close();
 }

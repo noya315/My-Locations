@@ -1,23 +1,27 @@
-<mat-card class="submit">
+<mat-card class="submit location">
   <form [formGroup] = "locationForm">
     <mat-form-field>
-        <input matInput type="text" formControlName="name" placeholder="Location Name">
+        <input matInput type="text" formControlName="name" placeholder="Location Name" required>
     </mat-form-field>
     <mat-form-field>
-        <input matInput type="text" formControlName="address" placeholder="Location Address">
+        <input matInput type="text" formControlName="address" placeholder="Location Address" required>
+    </mat-form-field>
+    <mat-form-field >
+      <input matInput type="text" formControlName="latitude" placeholder="Latitude - in range [-90,90]" required>
     </mat-form-field>
     <mat-form-field>
-        <input matInput type="text" formControlName="coordinates" placeholder="Location Coordinates">
+      <input matInput type="text" formControlName="longitude" placeholder="Longitude - in range [-180,180]" required>
     </mat-form-field>
     <mat-form-field>
-        <input type="text" [matAutocomplete]="auto" matInput formControlName="category" placeholder="Location Category">
+        <input type="text" [matAutocomplete]="auto" matInput formControlName="category" placeholder="Location Category" required>
         <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let category of categories$ | async" [value]="category.name">{{category.name}}</mat-option>
+          <mat-option *ngFor="let category of categories" [value]="category.name">{{category.name}}</mat-option>
         </mat-autocomplete>
     </mat-form-field>
   </form>
+  <mat-error *ngIf="!valid">One or more fields are not valid.</mat-error>
   <mat-dialog-actions>
-    <button mat-button color="primary" [mat-dialog-close]="locationForm.value">{{data.submitTask}}</button>
+    <button mat-button color="primary" (click)="submit()">{{data.submitTask}}</button>
     <button mat-button color="primary" (click)="close()">Cancel</button>
   </mat-dialog-actions>
 </mat-card>

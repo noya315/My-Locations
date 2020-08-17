@@ -1,0 +1,21 @@
+<ng-template #toolbarPortalContent>
+    <span class="title">{{title$ | async}}</span>
+    <button mat-button *ngIf="(isSelectCategory$ | async) === false" (click)="addCategoryProcess()">
+        <mat-icon>add</mat-icon>
+    </button>
+    <button mat-button *ngIf="isSelectCategory$ | async" (click)="removeCategory()">
+        <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-button *ngIf="isSelectCategory$ | async" (click)="editCategoryProcess()">
+        <mat-icon>create</mat-icon>
+    </button>
+    <button mat-button *ngIf="isSelectCategory$ | async" (click)="viewDetails()">
+        <mat-icon>info</mat-icon>
+    </button>
+</ng-template>
+<div class="list">
+    <app-category *ngFor="let category of categories$ | async" [name]="category.name"
+        [isSelected]="!selectedCategory$ || (selectedCategory$ | async) === category"
+        (categorySelected)="selectCategory(category)">
+    </app-category>
+</div>

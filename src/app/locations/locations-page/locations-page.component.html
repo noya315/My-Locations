@@ -1,0 +1,30 @@
+<ng-template #toolbarPortalContent>
+    <span class="title">{{title$ | async}}</span>
+    <button mat-button *ngIf="(isSelectLocation$ | async) === false" (click)="addLocationProcess()">
+        <mat-icon>add</mat-icon>
+    </button>
+    <button mat-button *ngIf="isSelectLocation$ | async" (click)="removeLocation()">
+        <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-button *ngIf="isSelectLocation$ | async" (click)="editLocationProcess()">
+        <mat-icon>create</mat-icon>
+    </button>
+    <button mat-button *ngIf="isSelectLocation$ | async" (click)="viewDetails()">
+        <mat-icon>info</mat-icon>
+    </button>
+</ng-template>
+<div class="actions">
+    <app-sort (sortingTypeChange)="changeSorting($event.value)"></app-sort>
+    <app-filter (changeFilter)="changeFilter($event.value)"></app-filter>
+    <app-group-by (checkedChange)="changeViewMode($event.mode)"></app-group-by>
+</div>
+<ng-container *ngIf="output$ | async as output">
+    <ng-template *ngIf="output.isGroupedBy; then groupBy else list"></ng-template>
+    <ng-template #groupBy>
+        <app-group-by-category [groupedByCategory] = "output.data" (locationSelected)="selectLocation($event.location)"></app-group-by-category>
+    </ng-template>
+    <ng-template #list>
+        <app-locations-list [locations] = "output.data" (locationSelected)="selectLocation($event.location)"></app-locations-list>
+    </ng-template>
+</ng-container>
+<app-map></app-map>
