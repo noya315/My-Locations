@@ -93,6 +93,8 @@ export class LocationsService {
 
   resetLocation = () => {
     this.selectedLocation$.next(new Location());
+    this.mapsService.setDefaultCenter();
+    this.mapsService.selClickable(true);
   }
 
   viewDetails = () => {
