@@ -1,4 +1,6 @@
-<google-map class="map" height="430px" width="700" [zoom]="4" [center]="center$ | async">
+<mat-label>For add location select the coordinates position from the map.</mat-label>
+<google-map class="map" height="410px" width="700" [zoom]="4" [center]="center$ | async"
+    (mapClick)="addLocationProcess($event)">
     <map-marker *ngFor="let location of locations$ | async" [position]="location.position"
-        [options]="(selectedLocation$ | async) === location ? options : defaultOptions"></map-marker>
+        [options]="(selectedLocation$ | async) === location ? selectedMarkerOptions : defaultMarkerOptions"></map-marker>
 </google-map>

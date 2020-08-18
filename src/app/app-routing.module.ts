@@ -10,7 +10,6 @@ const routes: Routes = [
   { path: 'locations', component: LocationsPageComponent }
 ];
 
-
 @NgModule({
   imports: [
     RouterModule.forRoot(routes)

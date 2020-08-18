@@ -81,11 +81,13 @@ export class LocationsService {
     if (location.name !== selctedLocation.name || (!selctedLocation)) {
       this.selectedLocation$.next(location);
       this.mapsService.setCenter(location.position);
+      this.mapsService.selClickable(false);
 
     } else {
       const defualtLocation = new Location();
       this.selectedLocation$.next(defualtLocation);
       this.mapsService.setDefaultCenter();
+      this.mapsService.selClickable(true);
     }
   }
 
@@ -109,10 +111,10 @@ export class LocationsService {
     this.resetLocation();
   }
 
-  updateAllLocationToCategory(selectedCategory: Category, newCategory: Category){
+  updateAllLocationToCategory(selectedCategory: Category, newCategory: Category) {
     const locations = this.getLocations();
     locations.forEach((location) => {
-      if (location.category === selectedCategory.name){
+      if (location.category === selectedCategory.name) {
         location.category = newCategory.name;
       }
     });

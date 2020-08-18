@@ -31,7 +31,7 @@ export class LocationsPageComponent implements AfterViewInit{
   output$: Observable<Output>;
 
   constructor(
-    public dialog: MatDialog,
+    private dialog: MatDialog,
     private locationsService: LocationsService,
     private toolbarService: ToolbarService,
     private viewContainerRef: ViewContainerRef,
@@ -81,13 +81,7 @@ export class LocationsPageComponent implements AfterViewInit{
     this.toolbarService.setPortal(toolbarPortal);
   }
 
-  addLocationProcess = () => this.openDialog('Add Location', this.addLocation);
-
   editLocationProcess = () => this.openDialog('Edit Location', this.editLocation);
-
-  addLocation = (location: Location) => {
-    this.locationsService.addLocation(location);
-  }
 
   removeLocation = () => {
     this.locationsService.removeLocation();
