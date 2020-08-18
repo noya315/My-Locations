@@ -6,8 +6,6 @@ import { MapsService } from 'src/app/services/maps.service';
 import { LocationsService } from 'src/app/services/locations.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SubmitLocationDialogComponent } from 'src/app/locations/submit-location-dialog/submit-location-dialog.component';
-import { DEFAULT_OPTIONS } from '@angular/google-maps/google-map/google-map';
-import { map } from 'rxjs/operators';
 
 const LOCATION_ICON_URL = 'http://maps.google.com/mapfiles/ms/icons/';
 

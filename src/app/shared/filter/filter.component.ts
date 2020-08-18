@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormControl, AbstractControl, ValidatorFn } from '@angular/forms';
 
 import { Category } from 'src/app/categories/category';
@@ -19,13 +19,13 @@ function autocompleteObjectValidator(): ValidatorFn {
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
 })
-export class FilterComponent implements OnInit {
+export class FilterComponent {
 
   @Output() changeFilter: EventEmitter<any>;
 
   private categories: Category[];
 
-  filteredCategoriesOptions: Observable<Category[]>;
+  filteredCategoriesOptions$: Observable<Category[]>;
 
   categoriesAutocompleteControl = new FormControl('',
     { validators: [autocompleteObjectValidator()] });
@@ -38,17 +38,14 @@ export class FilterComponent implements OnInit {
   constructor(private categoriesService: CategoriesService) {
     this.categories = this.categoriesService.getCategories();
     this.changeFilter = new EventEmitter<any>();
-  }
-
-  ngOnInit(): void {
-    this.filteredCategoriesOptions = this.categoriesAutocompleteControl.valueChanges.pipe(
+    this.filteredCategoriesOptions$ = this.categoriesAutocompleteControl.valueChanges.pipe(
       startWith(''),
       map(value => value ? value.name : ''),
-      map(name => name ? this._filterCategories(name) : this.categories.slice())
+      map(name => name ? this.filterCategories(name) : this.categories.slice())
     );
   }
 
-  private _filterCategories(name: string): Category[] {
+  private filterCategories(name: string): Category[] {
     if (name === '') {
       return this.categories.slice();
     }

@@ -23,8 +23,8 @@ export class LocationsPageComponent implements AfterViewInit{
   title$: Observable<string>;
   viewMode$ = this.locationsService.viewMode;
   locations$: Observable<Location[]>;
-  filterByCategoryName: BehaviorSubject<string>;
-  sortingType: BehaviorSubject<SortingType>;
+  filterByCategoryName$: BehaviorSubject<string>;
+  sortingType$: BehaviorSubject<SortingType>;
   outputLocations$: Observable<Location[]>;
   selectedLocation$: Observable<Location>;
   isSelectLocation$: Observable<boolean>;
@@ -37,9 +37,9 @@ export class LocationsPageComponent implements AfterViewInit{
     private viewContainerRef: ViewContainerRef,
   ) {
 
-    this.sortingType = new BehaviorSubject<SortingType>(SortingType.CreationTime);
+    this.sortingType$ = new BehaviorSubject<SortingType>(SortingType.CreationTime);
 
-    this.filterByCategoryName = new BehaviorSubject<string>('');
+    this.filterByCategoryName$ = new BehaviorSubject<string>('');
 
     this.selectedLocation$ = this.locationsService.selectedLocation;
 
@@ -55,8 +55,8 @@ export class LocationsPageComponent implements AfterViewInit{
 
     this.outputLocations$ = combineLatest([
       this.locations$,
-      this.sortingType,
-      this.filterByCategoryName
+      this.sortingType$,
+      this.filterByCategoryName$
     ]).pipe(
       map(([locations, sortingType, filterByCategoryName]) =>
         this.updateOutputLocations(locations, sortingType, filterByCategoryName)
@@ -137,11 +137,11 @@ export class LocationsPageComponent implements AfterViewInit{
   }
 
   changeSorting(sortingType: number) {
-    this.sortingType.next(sortingType as SortingType);
+    this.sortingType$.next(sortingType as SortingType);
   }
 
   changeFilter(value: string) {
-    this.filterByCategoryName.next(value);
+    this.filterByCategoryName$.next(value);
   }
 
   changeViewMode(mode: number) {

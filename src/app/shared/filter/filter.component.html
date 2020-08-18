@@ -4,7 +4,7 @@
         [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayCategoryFn"
         (optionSelected)="changeInput($event.option.value.name)">
-        <mat-option *ngFor="let category of filteredCategoriesOptions | async" [value]="category">
+        <mat-option *ngFor="let category of filteredCategoriesOptions$ | async" [value]="category">
             {{category.name}}
         </mat-option>
     </mat-autocomplete>
